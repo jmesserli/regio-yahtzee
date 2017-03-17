@@ -53,12 +53,27 @@ public class YatzeGame {
     private final YatzeRule leftBonusRule = new LeftBonusRule();
     private final List<YatzeRule> rightRules = new ArrayList<>();
 
+    private final int[] playerScores = new int[2];
+    private int curPlayerIdx = 0;
+
     public YatzeGame() {
         Collections.addAll(leftRules, new AcesRule(), new TwosRule(), new ThreesRule(), new FoursRule(), new FivesRule(), new SixesRule());
         Collections.addAll(rightRules, new ThreeOfAKindRule(), new FourOfAKindRule(), new FullHouseRule(), new SmallStraightRule(), new LargeStraightRule(), new YahtzeeRule(), new ChanceRule());
     }
 
+    public List<Dice> roll() {
+        List<Dice> dice = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            dice.add(Dice.values()[(int) (Math.random() * 5)]);
+        }
+        return dice;
+    }
+
     public int[] getLeftSubtotal() {
         return leftSubtotal;
+    }
+
+    public int getScoreOfPlayer(int playerIndex) {
+        return playerScores[playerIndex];
     }
 }

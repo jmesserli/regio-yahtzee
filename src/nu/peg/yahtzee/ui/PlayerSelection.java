@@ -135,23 +135,26 @@ public class PlayerSelection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-         SwingUtilities.invokeLater(()-> {
-             this.setVisible(false);
-             Global.INSTANCE.welcomeScreen.setVisible(true);
-         });
+        SwingUtilities.invokeLater(() -> {
+            this.setVisible(false);
+            Global.INSTANCE.welcomeScreen.setVisible(true);
+        });
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         errorLbl.setText("");
-        final String player1 = player1Txt.getText();
-        final String player2 = player2Txt.getText();
-        
-        if (player1.trim().isEmpty() || player2.trim().isEmpty()){
+        final String player1 = player1Txt.getText().trim();
+        final String player2 = player2Txt.getText().trim();
+
+        if (player1.isEmpty() || player2.isEmpty()) {
             errorLbl.setText("The player's names can't be empty");
             return;
         }
-        
-        // TODO create game window
+
+        SwingUtilities.invokeLater(() -> {
+            this.setVisible(false);
+            new GameWindow(player1, player2).setVisible(true);
+        });
     }//GEN-LAST:event_startBtnActionPerformed
 
 
